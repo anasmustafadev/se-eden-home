@@ -1,10 +1,11 @@
 "use client";
-import React from 'react';
+import React, { MouseEventHandler } from "react";
 
 interface ButtonConfig {
   label: string;
   className: string;
-  actionType: string; 
+  actionType: string;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 interface TableProps {
@@ -13,15 +14,7 @@ interface TableProps {
   buttons: ButtonConfig[][];
 }
 
-function Table({ data, headers, buttons }:TableProps) {
-  const handleButtonClick = (rowIndex: number, actionType: string) => {
-    if (actionType === "RECEIVE") {
-      console.log(`Cash Receive for row ${rowIndex}`);
-    } else if (actionType === "DETAIL") {
-      console.log(`Detail for row ${rowIndex}`);
-    }
-  };
-
+function Table({ data, headers, buttons }: TableProps) {
   return (
     <div>
       <div className="flex flex-col">
@@ -40,7 +33,9 @@ function Table({ data, headers, buttons }:TableProps) {
                         {header}
                       </th>
                     ))}
-                    <th className="text-sm font-medium text-center text-gray-900 px-6 py-4">Actions</th>
+                    <th className="text-sm font-medium text-center text-gray-900 px-6 py-4">
+                      Actions
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -59,7 +54,7 @@ function Table({ data, headers, buttons }:TableProps) {
                           <button
                             key={buttonIndex}
                             className={button.className}
-                            onClick={() => handleButtonClick(rowIndex, button.actionType)} // Call handleButtonClick with rowIndex and actionType
+                            onClick={button.onClick} // Call handleButtonClick with rowIndex and actionType
                           >
                             {button.label}
                           </button>
@@ -75,6 +70,6 @@ function Table({ data, headers, buttons }:TableProps) {
       </div>
     </div>
   );
-};
+}
 
 export default Table;
