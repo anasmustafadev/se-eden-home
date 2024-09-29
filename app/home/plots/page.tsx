@@ -69,10 +69,10 @@ const page = () => {
   ];
   const buttons = plotData.map((i, k) => [
     {
-      label: "Detail",
+      label: "Update",
       className: "bg-blue-500 text-white px-3 py-2 rounded mr-1",
       actionType: "DETAIL",
-      onClick: () => {},
+      onClick: () => openBackdrop(),
     },
   ]);
 
@@ -82,7 +82,7 @@ const page = () => {
     setIsOpen(false);
   };
 
-  const openBackdrop = (index: number) => {
+  const openBackdrop = () => {
     setIsOpen(true);
   };
 
@@ -222,7 +222,7 @@ const page = () => {
           <Card>
             <div className="flex gap-2">
               <button
-                onClick={() => openBackdrop(0)}
+                onClick={() => openBackdrop()}
                 className="flex items-center bg-blue-500 hover:opacity-90 text-white py-2 px-4 rounded"
               >
                 <FaPlus className="mr-2" />
