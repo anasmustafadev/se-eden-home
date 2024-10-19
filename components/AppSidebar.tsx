@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { useState } from "react";
 import { IoIosPerson } from "react-icons/io";
 import { MdDashboard } from "react-icons/md";
 import { MdLandscape, MdMenu, MdClose } from "react-icons/md";

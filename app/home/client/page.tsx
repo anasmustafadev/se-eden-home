@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { ChangeEvent, ChangeEventHandler } from "react";
 import {
   Card,
   CardContent,
@@ -76,7 +76,22 @@ const page = () => {
     },
   ]);
 
+  interface Form {
+    type: number;
+    name: string;
+    cnic: string;
+    address: string;
+  }
+
+  const defaultValue = {
+    type: 0,
+    name: "",
+    cnic: "",
+    address: "",
+  };
+
   const [isOpen, setIsOpen] = useState(false);
+  const [form, setForm] = useState<Form>(defaultValue);
 
   const onClose = () => {
     setIsOpen(false);
@@ -85,6 +100,16 @@ const page = () => {
   const openBackdrop = () => {
     setIsOpen(true);
   };
+
+  function setFormValue(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+    setForm((prev) => {
+      return {
+        ...prev,
+        [e.target.name]:
+          e.target.name == "type" ? Number(e.target.value) : e.target.value,
+      };
+    });
+  }
 
   return (
     <>
@@ -97,7 +122,12 @@ const page = () => {
             <div className="flex flex-col items-center gap-2">
               <div className="w-full">
                 <p>Type</p>
-                <select className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm">
+                <select
+                  name="type"
+                  onChange={setFormValue}
+                  value={form.type}
+                  className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
+                >
                   <option value="">Select Type</option>
                   <option value="">Purchaser</option>
                   <option value="">Investor</option>
@@ -110,6 +140,9 @@ const page = () => {
                 <input
                   placeholder="Residential"
                   type="text"
+                  name="name"
+                  onChange={setFormValue}
+                  value={form.name}
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
               </div>
@@ -118,6 +151,9 @@ const page = () => {
                 <input
                   placeholder="20"
                   type="text"
+                  name="cnic"
+                  onChange={setFormValue}
+                  value={form.cnic}
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
               </div>
@@ -126,6 +162,9 @@ const page = () => {
                 <input
                   placeholder="20"
                   type="text"
+                  name="address"
+                  onChange={setFormValue}
+                  value={form.address}
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
               </div>
@@ -134,13 +173,23 @@ const page = () => {
               <div className="flex justify-between w-full">
                 <button
                   className="bg-blue-500 px-3 py-2 rounded "
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false);
+                    setForm((prev) => {
+                      return { ...prev, defaultValue };
+                    });
+                  }}
                 >
                   Save
                 </button>
                 <button
                   className="bg-red-500 px-3 py-2 rounded "
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false);
+                    setForm((prev) => {
+                      return { ...prev, defaultValue };
+                    });
+                  }}
                 >
                   Exit
                 </button>
