@@ -71,7 +71,7 @@ const page = () => {
     {
       label: "Update",
       className:
-        "bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out",
+        "border-2 border-blue-500 text-blue-500 font-semibold py-2 px-4 rounded-lg hover:bg-blue-500 hover:text-white transition-colors duration-300 ease-in-out",
       actionType: "DETAIL",
       onClick: () => openBackdrop(),
     },
@@ -173,7 +173,7 @@ const page = () => {
             <CardFooter className="w-full mt-5">
               <div className="flex justify-between w-full">
                 <button
-                  className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out"
+                  className="border-2 border-blue-500 text-blue-500 font-semibold py-2 px-4 rounded-lg hover:bg-blue-500 hover:text-white transition-colors duration-300 ease-in-out"
                   onClick={() => {
                     setIsOpen(false);
                     setForm((prev) => {
@@ -184,7 +184,7 @@ const page = () => {
                   Save
                 </button>
                 <button
-                  className="bg-gradient-to-r from-red-500 to-purple-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out"
+                  className="border-2 border-red-500 text-red-500 font-semibold py-2 px-4 rounded-lg hover:bg-red-500 hover:text-white transition-colors duration-300 ease-in-out"
                   onClick={() => {
                     setIsOpen(false);
                     setForm((prev) => {
