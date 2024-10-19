@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import SimpleTable from "@/components/SimpleTable";
-import Card from "@/components/Card";
+import { Card } from "@/components/ui/card";
 import PageHeader from "@/components/PageHeader";
 import Backdrop from "@/components/Backdrop";
 import { FaMoneyBillAlt } from "react-icons/fa";

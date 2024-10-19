@@ -8,8 +8,8 @@ function layout({ children }: { children: ReactNode }) {
     <div className="bg-slate-200 h-full">
       <SidebarProvider>
         <AppSidebar />
-        <div className="flex flex-row w-full">
-          <SidebarTrigger />
+        <div className="flex flex-row w-full z-10">
+          <SidebarTrigger className="absolute bottom-5 left-5 z-100" />
           <div className="ml-5 mr-10 mt-5 w-full">{children}</div>
         </div>
       </SidebarProvider>

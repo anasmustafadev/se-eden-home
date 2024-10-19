@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import PageHeader from "@/components/PageHeader";
 import { MdDashboard } from "react-icons/md";
+import BarChart from "@/components/BarChart";
 import {
   Card,
   CardContent,
@@ -60,6 +63,7 @@ function page() {
           />
         </CardHeader>
       </Card>
+
       <Card>
         <CardHeader>
           <CardTitle>Town Account Management System</CardTitle>
@@ -79,6 +83,7 @@ function page() {
           })}
         </CardContent>
       </Card>
+
       <div className="flex justify-between flex-wrap">
         <Card className="w-[100%] md:w-[49%]">
           <CardHeader>
@@ -93,7 +98,7 @@ function page() {
                       <CardHeader className="w-full">
                         <div className="flex justify-between w-full">
                           <h1 className="font-bold">{element.name}</h1>
-                          <p>{element.amount}</p>
+                          <span>{element.amount}</span>
                         </div>
                       </CardHeader>
                     </Card>
@@ -103,7 +108,37 @@ function page() {
             })}
           </CardContent>
         </Card>
-        <div></div>
+        <Card className="hidden md:w-[49%] md:block">
+          <div>
+            <h1 className="text-4xl font-bold text-center my-10">
+              Yearly Data Overview
+            </h1>
+            <BarChart yearData={yearData} />
+          </div>
+        </Card>
+        <Card className="block w-[100%] sm:hidden">
+          <CardHeader>
+            <CardTitle>Earning</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col flex-wrap gap-10">
+            {yearData.map((element) => {
+              return (
+                <div className="w-full">
+                  <div className="flex justify-between w-full">
+                    <Card className="w-full">
+                      <CardHeader className="w-full">
+                        <div className="flex justify-between w-full">
+                          <h1 className="font-bold">{element.name}</h1>
+                          <span>{element.amount}</span>
+                        </div>
+                      </CardHeader>
+                    </Card>
+                  </div>
+                </div>
+              );
+            })}
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
