@@ -70,7 +70,8 @@ const page = () => {
   const buttons = plotData.map((i, k) => [
     {
       label: "Update",
-      className: "bg-blue-500 text-white px-3 py-2 rounded mr-1",
+      className:
+        "bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out",
       actionType: "DETAIL",
       onClick: () => openBackdrop(),
     },
@@ -172,7 +173,7 @@ const page = () => {
             <CardFooter className="w-full mt-5">
               <div className="flex justify-between w-full">
                 <button
-                  className="bg-blue-500 px-3 py-2 rounded "
+                  className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out"
                   onClick={() => {
                     setIsOpen(false);
                     setForm((prev) => {
@@ -183,7 +184,7 @@ const page = () => {
                   Save
                 </button>
                 <button
-                  className="bg-red-500 px-3 py-2 rounded "
+                  className="bg-gradient-to-r from-red-500 to-purple-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out"
                   onClick={() => {
                     setIsOpen(false);
                     setForm((prev) => {

@@ -79,7 +79,8 @@ const page = () => {
   const buttons = plotData.map((i, k) => [
     {
       label: "Update",
-      className: "bg-blue-500 text-white px-3 py-2 rounded mr-1",
+      className:
+        "bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out",
       actionType: "DETAIL",
       onClick: () => openBackdrop(),
     },
@@ -108,6 +109,7 @@ const page = () => {
   const [form, setForm] = useState(defaultValue);
 
   const onClose = () => {
+    setForm((prev) => defaultValue);
     setIsOpen(false);
   };
 
@@ -359,13 +361,13 @@ const page = () => {
             </div>
             <div className="flex justify-between mt-5">
               <button
-                className="bg-blue-500 px-3 py-2 rounded "
+                className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out "
                 onClick={() => setIsOpen(false)}
               >
                 Save
               </button>
               <button
-                className="bg-red-500 px-3 py-2 rounded "
+                className="bg-gradient-to-r from-red-500 to-purple-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out"
                 onClick={() => setIsOpen(false)}
               >
                 Exit
