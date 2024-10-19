@@ -3,70 +3,20 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import PageHeader from "@/components/PageHeader";
 import { MdLandscape } from "react-icons/md";
-import Table from "@/components/Table";
+import AppTable from "@/components/Table";
 import { FaPlus, FaPrint } from "react-icons/fa";
 import { useState } from "react";
 import Backdrop from "@/components/Backdrop";
 
 const page = () => {
   const plotData = [
-    [
-      "1",
-      "Shop Commercial",
-      "1 Marla",
-      "27x10",
-      "2,000,000",
-      "2,000,000",
-      "4,000,000",
-      "33,333.33",
-      "48",
-    ],
-    [
-      "2",
-      "Shop Commercial",
-      "1.5 Marla",
-      "27x10",
-      "400,000",
-      "600,000",
-      "120,000",
-      "10,000",
-      "48",
-    ],
-    [
-      "3",
-      "Plot Residential",
-      "5 Marla",
-      "50x27",
-      "250,000",
-      "1,250,000",
-      "250,000",
-      "20,833.33",
-      "48",
-    ],
-    [
-      "4",
-      "Plot Residential",
-      "6.67 Marla",
-      "45x40",
-      "250,000",
-      "1,666,667",
-      "333,333",
-      "27,777.78",
-      "48",
-    ],
-    ["5", "Plot Residential", "0 Marla", "30x50", "0", "0", "0", "0", "48"],
+    ["1", "Shop Commercial", "1 Marla", "27x10", "2,000,000"],
+    ["2", "Shop Commercial", "1.5 Marla", "27x10", "400,000"],
+    ["3", "Plot Residential", "5 Marla", "50x27", "250,000"],
+    ["4", "Plot Residential", "6.67 Marla", "45x40", "250,000"],
+    ["5", "Plot Residential", "0 Marla", "30x50", "0"],
   ];
-  const headers = [
-    "No.",
-    "Plot",
-    "Area",
-    "Size",
-    "Rate",
-    "Amount",
-    "Advance",
-    "Installment",
-    "No of Installments",
-  ];
+  const headers = ["No.", "Plot", "Area", "Size", "Rate"];
   const buttons = plotData.map((i, k) => [
     {
       label: "Update",
@@ -90,12 +40,15 @@ const page = () => {
     <>
       <Backdrop isOpen={isOpen} onClose={onClose}>
         <Card>
-          <div className="flex flex-col p-5 w-[30rem]">
-            <h1 className="text-3xl mb-5">Plot Menu</h1>
+          <CardHeader>
+            <CardTitle className="text-3xl mb-5">Plot Menu</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col p-5 w-[30rem] flex-wrap">
             <div className="flex items-center gap-2 justify-around">
               <div>
                 <p>Plot #</p>
                 <input
+                  placeholder="231"
                   type="text"
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
@@ -103,6 +56,7 @@ const page = () => {
               <div>
                 <p>Plot Type #</p>
                 <input
+                  placeholder="Residential"
                   type="text"
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
@@ -110,6 +64,7 @@ const page = () => {
               <div>
                 <p>Area</p>
                 <input
+                  placeholder="20"
                   type="text"
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
@@ -119,6 +74,7 @@ const page = () => {
               <div>
                 <p>Feets</p>
                 <input
+                  placeholder="30"
                   type="text"
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
@@ -126,6 +82,7 @@ const page = () => {
               <div>
                 <p>Inches</p>
                 <input
+                  placeholder="6"
                   type="text"
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
@@ -133,6 +90,7 @@ const page = () => {
               <div>
                 <p>Feets</p>
                 <input
+                  placeholder="50"
                   type="text"
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
@@ -140,6 +98,7 @@ const page = () => {
               <div>
                 <p>Inches</p>
                 <input
+                  placeholder="2"
                   type="text"
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
@@ -149,6 +108,7 @@ const page = () => {
               <div>
                 <p>Rate Per Marla</p>
                 <input
+                  placeholder="0"
                   type="text"
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
@@ -156,6 +116,7 @@ const page = () => {
               <div>
                 <p>Price</p>
                 <input
+                  placeholder="0"
                   type="text"
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
@@ -165,6 +126,7 @@ const page = () => {
               <div>
                 <p>Number of Months</p>
                 <input
+                  placeholder="6"
                   type="text"
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
@@ -207,7 +169,7 @@ const page = () => {
                 Exit
               </button>
             </div>
-          </div>
+          </CardContent>
         </Card>
       </Backdrop>
 
@@ -221,6 +183,7 @@ const page = () => {
               />
             </CardHeader>
           </Card>
+
           <Card>
             <CardHeader>
               <CardTitle>Details</CardTitle>
@@ -239,7 +202,7 @@ const page = () => {
                 Print
               </button>
             </CardContent>
-            <Table data={plotData} headers={headers} buttons={buttons} />
+            <AppTable data={plotData} headers={headers} buttons={buttons} />
           </Card>
         </div>
       </div>

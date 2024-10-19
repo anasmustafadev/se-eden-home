@@ -1,5 +1,14 @@
 "use client";
 import React, { MouseEventHandler } from "react";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 interface ButtonConfig {
   label: string;
@@ -14,62 +23,111 @@ interface TableProps {
   buttons: ButtonConfig[][];
 }
 
-function Table({ data, headers, buttons }: TableProps) {
+// function Table({ data, headers, buttons }: TableProps) {
+//   return (
+//     <div className="flex flex-col">
+//       <div className="overflow-x-scroll">
+//         <div className="inline-block min-w-full py-2 align-middle">
+//           <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
+//             <table className="min-w-full divide-y divide-gray-200">
+//               <thead className="bg-gray-50">
+//                 <tr>
+//                   {headers.map((header, index) => (
+//                     <th
+//                       key={index}
+//                       scope="col"
+//                       className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+//                     >
+//                       {header}
+//                     </th>
+//                   ))}
+//                   <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Actions
+//                   </th>
+//                 </tr>
+//               </thead>
+//               <tbody className="bg-white divide-y divide-gray-200">
+//                 {data.map((row, rowIndex) => (
+//                   <tr key={rowIndex}>
+//                     {row.map((cell, cellIndex) => (
+//                       <td
+//                         key={cellIndex}
+//                         className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-900"
+//                       >
+//                         {cell}
+//                       </td>
+//                     ))}
+//                     <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+//                       {buttons[rowIndex].map((button, buttonIndex) => (
+//                         <button
+//                           key={buttonIndex}
+//                           className={button.className}
+//                           onClick={button.onClick}
+//                         >
+//                           {button.label}
+//                         </button>
+//                       ))}
+//                     </td>
+//                   </tr>
+//                 ))}
+//               </tbody>
+//             </table>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+function AppTable({ data, headers, buttons }: TableProps) {
   return (
-    <div>
-      <div className="flex flex-col">
-        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-            <div className="overflow-hidden">
-              <table className="min-w-full">
-                <thead className="border-b">
-                  <tr>
-                    {headers.map((header, index) => (
-                      <th
-                        scope="col"
-                        key={index}
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
-                      >
-                        {header}
-                      </th>
-                    ))}
-                    <th className="text-sm font-medium text-center text-gray-900 px-6 py-4">
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {data.map((row, rowIndex) => (
-                    <tr key={rowIndex}>
-                      {row.map((cell, cellIndex) => (
-                        <td
-                          key={cellIndex}
-                          className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium text-gray-900"
-                        >
-                          {cell}
-                        </td>
-                      ))}
-                      <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium text-gray-900">
-                        {buttons[rowIndex].map((button, buttonIndex) => (
-                          <button
-                            key={buttonIndex}
-                            className={button.className}
-                            onClick={button.onClick} // Call handleButtonClick with rowIndex and actionType
-                          >
-                            {button.label}
-                          </button>
-                        ))}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Table className="px-10 max-w-full min-w-64">
+      <TableHeader>
+        <TableRow>
+          {headers.map((header, index) => (
+            <TableHead
+              key={index}
+              scope="col"
+              className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              {header}
+            </TableHead>
+          ))}
+          <TableHead
+            scope="col"
+            className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Actions
+          </TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {data.map((row, rowIndex) => (
+          <TableRow key={rowIndex}>
+            {row.map((cell, cellIndex) => (
+              <TableCell
+                key={cellIndex}
+                className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-900"
+              >
+                {cell}
+              </TableCell>
+            ))}
+            <TableCell className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+              {buttons[rowIndex].map((button, buttonIndex) => (
+                <button
+                  key={buttonIndex}
+                  className={button.className}
+                  onClick={button.onClick}
+                >
+                  {button.label}
+                </button>
+              ))}
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
   );
 }
 
-export default Table;
+export default AppTable;

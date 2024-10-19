@@ -5,12 +5,12 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 function layout({ children }: { children: ReactNode }) {
   return (
-    <div className="bg-slate-200 h-full">
+    <div className="bg-slate-200 w-full h-full">
       <SidebarProvider>
         <AppSidebar />
         <div className="flex flex-row w-full z-10">
           <SidebarTrigger className="absolute bottom-5 left-5 z-100" />
-          <div className="ml-5 mr-10 mt-5 w-full">{children}</div>
+          <div className="mx-5 mt-5 w-full">{children}</div>
         </div>
       </SidebarProvider>
     </div>

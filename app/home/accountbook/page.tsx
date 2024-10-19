@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
 import PageHeader from "@/components/PageHeader";
 import { FaBook } from "react-icons/fa";
-import Table from "@/components/Table";
+import AppTable from "@/components/Table";
 import { FaPlus } from "react-icons/fa";
 import Backdrop from "@/components/Backdrop";
 
@@ -185,7 +185,7 @@ const page = () => {
               Daily Cash
             </button>
           </div>
-          <Table data={ledgerData} headers={headers} buttons={buttons} />
+          <AppTable data={ledgerData} headers={headers} buttons={buttons} />
         </Card>
       </div>
     </>

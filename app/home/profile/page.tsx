@@ -5,7 +5,7 @@ import { IoIosPerson } from "react-icons/io";
 import { Card } from "@/components/ui/card";
 import PageHeader from "@/components/PageHeader";
 import { FaSave, FaPlus } from "react-icons/fa";
-import Table from "@/components/Table";
+import AppTable from "@/components/Table";
 import { useState } from "react";
 import Backdrop from "@/components/Backdrop";
 
@@ -172,7 +172,7 @@ const page = () => {
         </Card>
         <Card>
           <h1 className="text-2xl">Users</h1>
-          <Table data={userData} headers={headers} buttons={buttons} />
+          <AppTable data={userData} headers={headers} buttons={buttons} />
           <button
             onClick={() => openBackdrop(3)}
             className="flex items-center mt-5 bg-blue-500 hover:opacity-90 text-white py-2 px-4 rounded"

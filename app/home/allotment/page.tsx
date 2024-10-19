@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
-import Table from "@/components/Table";
+import AppTable from "@/components/Table";
 import SimpleTable from "@/components/SimpleTable";
 import PageHeader from "@/components/PageHeader";
 import { FaChartBar } from "react-icons/fa";
@@ -605,7 +605,7 @@ const page = () => {
               </button>
             </div>
           </div>
-          <Table data={allotmentData} headers={headers} buttons={buttons} />
+          <AppTable data={allotmentData} headers={headers} buttons={buttons} />
           <SimpleTable data={report} />
         </Card>
       </div>
