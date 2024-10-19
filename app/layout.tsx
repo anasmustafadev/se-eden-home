@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/AppSidebar";
 
 const poppins = Poppins({
   weight: "100",

@@ -2,7 +2,7 @@
 
 import React, { ChangeEvent } from "react";
 import { IoIosPerson } from "react-icons/io";
-import Card from "@/components/Card";
+import { Card } from "@/components/ui/card";
 import PageHeader from "@/components/PageHeader";
 import { FaSave, FaPlus } from "react-icons/fa";
 import Table from "@/components/Table";

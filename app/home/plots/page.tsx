@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Card from "@/components/Card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import PageHeader from "@/components/PageHeader";
 import { MdLandscape } from "react-icons/md";
 import Table from "@/components/Table";
@@ -214,13 +214,18 @@ const page = () => {
       <div>
         <div className="w-full flex flex-col gap-5">
           <Card>
-            <PageHeader
-              icon={<MdLandscape className="text-4xl" />}
-              title="Plots"
-            />
+            <CardHeader>
+              <PageHeader
+                icon={<MdLandscape className="text-4xl" />}
+                title="Plots"
+              />
+            </CardHeader>
           </Card>
           <Card>
-            <div className="flex gap-2">
+            <CardHeader>
+              <CardTitle>Details</CardTitle>
+            </CardHeader>
+            <CardContent className="flex gap-2">
               <button
                 onClick={() => openBackdrop()}
                 className="flex items-center bg-blue-500 hover:opacity-90 text-white py-2 px-4 rounded"
@@ -233,7 +238,7 @@ const page = () => {
                 <FaPrint className="mr-2" />
                 Print
               </button>
-            </div>
+            </CardContent>
             <Table data={plotData} headers={headers} buttons={buttons} />
           </Card>
         </div>
