@@ -1,5 +1,5 @@
 "use client";
-import React, { use } from "react";
+import React, { ChangeEvent, use, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import PageHeader from "@/components/PageHeader";
 import { MdLandscape } from "react-icons/md";
@@ -87,7 +87,7 @@ const page = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const [form, setForm] = useState({
+  const defaultValue = {
     number: 0,
     type: 0,
     area: 0,
@@ -103,7 +103,9 @@ const page = () => {
     advamount: 0,
     feature: 0,
     total: 0,
-  });
+  };
+
+  const [form, setForm] = useState(defaultValue);
 
   const onClose = () => {
     setIsOpen(false);
@@ -112,6 +114,55 @@ const page = () => {
   const openBackdrop = () => {
     setIsOpen(true);
   };
+
+  useEffect(() => {
+    setForm((prev) => {
+      if (prev.rate != undefined && prev.area != undefined) {
+        return {
+          ...prev,
+          price: prev.rate * prev.area,
+        };
+      }
+      return prev;
+    });
+  }, [form.rate, form.area]);
+
+  useEffect(() => {
+    setForm((prev) => {
+      return {
+        ...prev,
+        total:
+          prev.feature == 1
+            ? prev.price + prev.price * 0.1
+            : prev.feature == 2
+            ? prev.price + prev.price * 0.05
+            : prev.price,
+      };
+    });
+  }, [form.price, form.feature]);
+
+  useEffect(() => {
+    setForm((prev) => {
+      return {
+        ...prev,
+        rate: prev.type == 1 ? 120000 : prev.rate,
+      };
+    });
+  }, [form.type]);
+
+  function setFormValue(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+    setForm((prev) => {
+      return {
+        ...prev,
+        [e.target.name]:
+          e.target.name == "type" ||
+          e.target.name == "installment" ||
+          e.target.name == "feature"
+            ? Number(e.target.value)
+            : e.target.value,
+      };
+    });
+  }
 
   return (
     <>
@@ -128,6 +179,8 @@ const page = () => {
                   placeholder="231"
                   name="number"
                   type="text"
+                  value={form.number}
+                  onChange={setFormValue}
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
               </div>
@@ -135,6 +188,8 @@ const page = () => {
                 <p>Plot Type</p>
                 <select
                   name="type"
+                  value={form.type}
+                  onChange={setFormValue}
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 >
                   <option value={0}>Select Type</option>
@@ -148,6 +203,8 @@ const page = () => {
                   placeholder="20"
                   type="text"
                   name="area"
+                  value={form.area}
+                  onChange={setFormValue}
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
               </div>
@@ -159,6 +216,8 @@ const page = () => {
                   placeholder="30"
                   type="text"
                   name="feet1"
+                  value={form.feet1}
+                  onChange={setFormValue}
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
               </div>
@@ -168,6 +227,8 @@ const page = () => {
                   placeholder="6"
                   type="text"
                   name="inch1"
+                  value={form.inch1}
+                  onChange={setFormValue}
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
               </div>
@@ -177,6 +238,8 @@ const page = () => {
                   placeholder="50"
                   type="text"
                   name="feet2"
+                  value={form.feet2}
+                  onChange={setFormValue}
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
               </div>
@@ -186,6 +249,8 @@ const page = () => {
                   placeholder="2"
                   type="text"
                   name="inch2"
+                  value={form.inch2}
+                  onChange={setFormValue}
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
               </div>
@@ -196,8 +261,10 @@ const page = () => {
                 <input
                   placeholder="0"
                   type="text"
-                  disabled
+                  disabled={form.type == 1 ? true : false}
                   name="rate"
+                  value={form.rate}
+                  onChange={setFormValue}
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
               </div>
@@ -208,6 +275,8 @@ const page = () => {
                   type="text"
                   disabled
                   name="price"
+                  value={form.price}
+                  onChange={setFormValue}
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
               </div>
@@ -219,6 +288,8 @@ const page = () => {
                   placeholder="6"
                   type="text"
                   name="month"
+                  value={form.month}
+                  onChange={setFormValue}
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
               </div>
@@ -226,6 +297,8 @@ const page = () => {
                 <p>Installment Type</p>
                 <select
                   name="installment"
+                  value={form.installment}
+                  onChange={setFormValue}
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 >
                   <option value={0}>Select Type</option>
@@ -242,6 +315,8 @@ const page = () => {
                 <input
                   type="text"
                   name="advance"
+                  value={form.advance}
+                  onChange={setFormValue}
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
               </div>
@@ -250,6 +325,8 @@ const page = () => {
                 <input
                   type="text"
                   name="advamount"
+                  value={form.advamount}
+                  onChange={setFormValue}
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
               </div>
@@ -259,6 +336,8 @@ const page = () => {
                 <p>Feature</p>
                 <select
                   name="feature"
+                  value={form.feature}
+                  onChange={setFormValue}
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 >
                   <option value={0}>Select Type</option>
@@ -272,6 +351,8 @@ const page = () => {
                   type="text"
                   disabled
                   name="total"
+                  value={form.total}
+                  onChange={setFormValue}
                   className="mt-1 w-full block rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
                 />
               </div>
