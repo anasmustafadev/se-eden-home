@@ -1,11 +1,20 @@
 "use client";
 import React, { useState } from "react";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import AppTable from "@/components/Table";
 import SimpleTable from "@/components/SimpleTable";
 import PageHeader from "@/components/PageHeader";
-import { FaChartBar } from "react-icons/fa";
+import { FaChartBar, FaHamburger, FaHandMiddleFinger } from "react-icons/fa";
 import Backdrop from "@/components/Backdrop";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { IoMdMenu } from "react-icons/io";
 
 const page = () => {
   const allotmentData = [
@@ -536,76 +545,94 @@ const page = () => {
 
       <div className="w-full flex flex-col gap-5">
         <Card>
-          <PageHeader
-            icon={<FaChartBar className="text-4xl" />}
-            title="Allotments"
-          />
+          <CardHeader>
+            <PageHeader
+              icon={<FaChartBar className="text-4xl" />}
+              title="Allotments"
+            />
+          </CardHeader>
         </Card>
+
         <Card>
-          <div className="flex flex-col gap-2">
-            <div className="flex gap-2">
-              <button
-                onClick={openAddAllotment}
-                className="flex items-center bg-blue-500 hover:opacity-90 text-white py-2 px-4 rounded"
-              >
-                Add New Allotment
-              </button>
-              <button
-                onClick={openAddAdvance}
-                className="flex items-center bg-green-500 hover:opacity-90 text-white py-2 px-4 rounded"
-              >
-                Add Advance
-              </button>
-              <button
-                onClick={openAddInstallment}
-                className="flex items-center bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
-              >
-                Add Installment
-              </button>
-              <button
-                onClick={openAddMultiInstallment}
-                className="flex items-center bg-green-500 hover:opacity-90 text-white py-2 px-4 rounded"
-              >
-                Add Multi Installment
-              </button>
-              <button className="flex items-center bg-blue-500 hover:opacity-90 text-white py-2 px-4 rounded">
-                Sale Report
-              </button>
-              <button className="flex items-center bg-blue-700 hover:opacity-90 text-white py-2 px-4 rounded">
-                Defaulters SMS Client wise
-              </button>
-              <button className="flex items-center bg-blue-500 hover:opacity-90 text-white py-2 px-4 rounded">
-                Defaulter Report
-              </button>
+          <CardHeader>
+            <div className="flex justify-between">
+              <CardTitle>Allotments</CardTitle>
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <IoMdMenu className="text-2xl" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={openAddAllotment}
+                    className="flex items-center hover:opacity-90 py-2 px-4 rounded"
+                  >
+                    Add New Allotment
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={openAddAdvance}
+                    className="flex items-center  hover:opacity-90 py-2 px-4 rounded"
+                  >
+                    Add Advance
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={openAddInstallment}
+                    className="flex items-center  hover:bg-blue-700 py-2 px-4 rounded"
+                  >
+                    Add Installment
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={openAddMultiInstallment}
+                    className="flex items-center  hover:opacity-90 py-2 px-4 rounded"
+                  >
+                    Add Multi Installment
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-center hover:opacity-90 py-2 px-4 rounded">
+                    Sale Report
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-center hover:opacity-90 py-2 px-4 rounded">
+                    Defaulters SMS Client wise
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-center hover:opacity-90 py-2 px-4 rounded">
+                    Defaulter Report
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-center hover:opacity-90 py-2 px-4 rounded">
+                    List of Installments
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-center hover:opacity-90 py-2 px-4 rounded">
+                    Plot wise Sale Report
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={openCancelAllotment}
+                    className="flex items-cente hover:opacity-90 py-2 px-4 rounded"
+                  >
+                    Cancel Allotment
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={openReturnAmount}
+                    className="flex items-cente hover:opacity-90 py-2 px-4 rounded"
+                  >
+                    Add Return Amount
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={openDeletePermanentAllotment}
+                    className="flex items-cente hover:opacity-90 py-2 px-4 rounded"
+                  >
+                    Delete Permanent Allotment With data
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
-            <div className="flex gap-2">
-              <button className="flex items-center bg-blue-500 hover:opacity-90 text-white py-2 px-4 rounded">
-                List of Installments
-              </button>
-              <button className="flex items-center bg-blue-500 hover:opacity-90 text-white py-2 px-4 rounded">
-                Plot wise Sale Report
-              </button>
-              <button
-                onClick={openCancelAllotment}
-                className="flex items-center bg-red-500 hover:opacity-90 text-white py-2 px-4 rounded"
-              >
-                Cancel Allotment
-              </button>
-              <button
-                onClick={openReturnAmount}
-                className="flex items-center bg-red-500 hover:opacity-90 text-white py-2 px-4 rounded"
-              >
-                Add Return Amount
-              </button>
-              <button
-                onClick={openDeletePermanentAllotment}
-                className="flex items-center bg-red-500 hover:opacity-90 text-white py-2 px-4 rounded"
-              >
-                Delete Permanent Allotment With data
-              </button>
-            </div>
+          </CardHeader>
+          <CardContent></CardContent>
+          <div>
+            <AppTable
+              data={allotmentData}
+              headers={headers}
+              buttons={buttons}
+            />
           </div>
-          <AppTable data={allotmentData} headers={headers} buttons={buttons} />
           <SimpleTable data={report} />
         </Card>
       </div>
