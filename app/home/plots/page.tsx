@@ -7,6 +7,15 @@ import AppTable from "@/components/Table";
 import { FaPlus, FaPrint } from "react-icons/fa";
 import { useState } from "react";
 import Backdrop from "@/components/Backdrop";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { IoMdMenu } from "react-icons/io";
 
 const page = () => {
   const plotData = [
@@ -186,23 +195,34 @@ const page = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle>Details</CardTitle>
+              <div className="flex justify-between">
+                <CardTitle>Details</CardTitle>
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <IoMdMenu className="text-2xl" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      onClick={() => openBackdrop()}
+                      className="flex items-center hover:opacity-90 py-2 px-4 rounded"
+                    >
+                      <FaPlus className="mr-2" />
+                      Add Plot
+                    </DropdownMenuItem>
+
+                    <DropdownMenuItem className="flex items-center hover:bg-blue-700 py-2 px-4 rounded">
+                      <FaPrint className="mr-2" />
+                      Print
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
             </CardHeader>
             <CardContent className="flex gap-2">
-              <button
-                onClick={() => openBackdrop()}
-                className="flex items-center bg-blue-500 hover:opacity-90 text-white py-2 px-4 rounded"
-              >
-                <FaPlus className="mr-2" />
-                Add Plot
-              </button>
-
-              <button className="flex items-center bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
-                <FaPrint className="mr-2" />
-                Print
-              </button>
+              <AppTable data={plotData} headers={headers} buttons={buttons} />
             </CardContent>
-            <AppTable data={plotData} headers={headers} buttons={buttons} />
           </Card>
         </div>
       </div>

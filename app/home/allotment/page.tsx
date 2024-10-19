@@ -64,7 +64,6 @@ const page = () => {
   ]);
 
   const report = [
-    ["Sales Report", ""],
     ["Total Area", "47.49 Marla"],
     ["Sold Area", "5.56 Marla"],
     ["For Sale Area", "41.83 Marla"],
@@ -633,7 +632,29 @@ const page = () => {
               buttons={buttons}
             />
           </div>
-          <SimpleTable data={report} />
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Sales Report</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col flex-wrap gap-10">
+            {report.map((element) => {
+              return (
+                <div className="w-full">
+                  <div className="flex justify-between w-full">
+                    <Card className="w-full">
+                      <CardHeader className="w-full">
+                        <div className="flex justify-between w-full">
+                          <h1 className="font-bold">{element[0]}</h1>
+                          <span>{element[1]}</span>
+                        </div>
+                      </CardHeader>
+                    </Card>
+                  </div>
+                </div>
+              );
+            })}
+          </CardContent>
         </Card>
       </div>
     </>
