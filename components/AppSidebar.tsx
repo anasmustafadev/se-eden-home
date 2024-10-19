@@ -5,7 +5,12 @@ import { useState } from "react";
 import { IoIosPerson } from "react-icons/io";
 import { MdDashboard } from "react-icons/md";
 import { MdLandscape, MdMenu, MdClose } from "react-icons/md";
-import { FaBook, FaChartBar, FaMoneyBillAlt } from "react-icons/fa";
+import {
+  FaBook,
+  FaChartBar,
+  FaMoneyBillAlt,
+  FaPersonBooth,
+} from "react-icons/fa";
 import {
   Sidebar,
   SidebarContent,
@@ -55,6 +60,11 @@ function AppSidebar() {
                   name: "Expenses",
                   link: "/home/expenses",
                   icon: <FaMoneyBillAlt />,
+                },
+                {
+                  name: "Client",
+                  link: "/home/client",
+                  icon: <FaPersonBooth />,
                 },
               ].map((element) => {
                 return (

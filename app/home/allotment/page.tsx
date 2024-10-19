@@ -127,7 +127,7 @@ const page = () => {
   };
   const [heading, setHeading] = useState("");
   return (
-    <>
+    <div className="overflow-x-hidden">
       <Backdrop isOpen={isAddAllotmentOpen} onClose={onCloseAddAllotment}>
         <Card>
           <div className="flex flex-col gap-3 p-5 w-[30rem] h-[90vh] overflow-y-auto">
@@ -657,7 +657,7 @@ const page = () => {
           </CardContent>
         </Card>
       </div>
-    </>
+    </div>
   );
 };
 
